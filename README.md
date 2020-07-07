@@ -10,7 +10,7 @@
     *主要是通信相关的部分，目前只是实现的tomcat版本的http ；解下来将实现 netty 版本的http 和 netty 的tcp ；
     *动态代理，目前实现了JDK的动态代理 和 CGlib版本的动态代理
     2、jalja-register：注册中心，目前实现了 zk 和 本地文件注册
-    3、jalja-common：公共模块，工具包。序列化方式也在其中
+    3、jalja-common：公共模块，工具包。序列化方式也在其中，目前只是实现了 JDK版本的序列化，后期计划加上 protocol 和 hessian
     4、jalja-config：与spring整合的模块
     5、jalja-example：就是一个demo 
 #基础使用

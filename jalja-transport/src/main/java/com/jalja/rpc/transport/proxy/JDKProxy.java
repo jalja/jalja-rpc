@@ -1,6 +1,6 @@
 package com.jalja.rpc.transport.proxy;
 
-import com.jalja.rpc.common.RemoteInvocation;
+import com.jalja.rpc.common.rpc.RemoteInvocation;
 
 import com.jalja.rpc.transport.route.IRoute;
 import com.jalja.rpc.transport.rpc.RpcProperties;

@@ -9,7 +9,7 @@ import java.util.ServiceLoader;
  * @date 2020/6/24 16:34
  * @description: 获取对应的序列化
  */
-public class SeriaSpi {
+public class SerializableSPI {
     public static IJaljaSerializable getIJaljaSerializable(Class cz){
         ServiceLoader<IJaljaSerializable> shouts = ServiceLoader.load(IJaljaSerializable.class);
         for (IJaljaSerializable s : shouts) {

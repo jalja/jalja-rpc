@@ -1,4 +1,4 @@
-package com.jalja.rpc.common;
+package com.jalja.rpc.common.rpc;
 
 import java.io.Serializable;
 
@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @title: RemoteMethod
  * @projectName jalja-rpc
  * @date 2020/6/24 15:40
- * @description: TODO
+ * @description: 通信的实体
  */
 public class RemoteInvocation implements Serializable {
     /**

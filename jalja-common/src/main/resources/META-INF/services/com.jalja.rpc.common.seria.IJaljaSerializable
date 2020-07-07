@@ -1,2 +1,3 @@
-com.jalja.rpc.common.seria.ProtobufSeria
-com.jalja.rpc.common.seria.JDKSeria
+com.jalja.rpc.common.seria.ProtobufSerializable
+com.jalja.rpc.common.seria.JDKSerializable
+com.jalja.rpc.common.seria.HessianSerializable

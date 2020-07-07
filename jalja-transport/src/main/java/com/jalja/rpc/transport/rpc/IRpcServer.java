@@ -1,6 +1,6 @@
 package com.jalja.rpc.transport.rpc;
 
-import com.jalja.rpc.common.RemoteInvocation;
+import com.jalja.rpc.common.rpc.RemoteInvocation;
 
 
 

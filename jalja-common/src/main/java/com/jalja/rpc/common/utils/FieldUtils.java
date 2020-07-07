@@ -8,8 +8,8 @@ import java.util.List;
  * @author XL
  * @title: FieldUtils
  * @projectName jalja-rpc
- * @date 2020/7/318:55
- * @description: TODO
+ * @date 2020/7/3 18:55
+ * @description: 反射的工具类
  */
 public class FieldUtils {
     public static <T> List<String> fileNames(Class<T> tClass){

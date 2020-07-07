@@ -2,6 +2,7 @@ package com.jalja.rpc.common.seria;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.ServiceLoader;
 
 /**
  * @author XL
@@ -26,4 +27,7 @@ public interface IJaljaSerializable {
      * @return
      */
     public  <T> T deserialize(byte[] data, Type cls) throws IOException, ClassNotFoundException;
+
+
+
 }

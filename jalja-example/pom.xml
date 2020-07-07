@@ -21,6 +21,7 @@
         <dependency>
             <groupId>com.jalja.rpc</groupId>
             <artifactId>jalja-config</artifactId>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>

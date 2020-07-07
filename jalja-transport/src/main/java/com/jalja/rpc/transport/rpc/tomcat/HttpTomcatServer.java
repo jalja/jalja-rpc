@@ -1,8 +1,8 @@
 package com.jalja.rpc.transport.rpc.tomcat;
 
-import com.jalja.rpc.common.RemoteInvocation;
+import com.jalja.rpc.common.rpc.RemoteInvocation;
 import com.jalja.rpc.common.seria.IJaljaSerializable;
-import com.jalja.rpc.common.seria.SeriaSpi;
+import com.jalja.rpc.common.seria.SerializableSPI;
 import com.jalja.rpc.common.utils.OkHttpUtils;
 import com.jalja.rpc.transport.rpc.IRpcServer;
 import com.jalja.rpc.transport.rpc.RpcProperties;
@@ -62,7 +62,7 @@ public class HttpTomcatServer implements IRpcServer {
     public Object invokeProtocl(RpcProperties rpcProperties, RemoteInvocation invocation) {
         try {
             String http="http://"+rpcProperties.getServerAddress()+"/rpc";
-            IJaljaSerializable serializable=SeriaSpi.getIJaljaSerializable(Class.forName(rpcProperties.getSerializableType()));
+            IJaljaSerializable serializable= SerializableSPI.getIJaljaSerializable(Class.forName(rpcProperties.getSerializableType()));
             return OkHttpUtils.post(http,invocation,serializable);
         }catch (Exception e){
             e.printStackTrace();

@@ -16,7 +16,7 @@ public class RpcConfigProperties extends AbsProperties {
     private String applicationType;
     private String registryType;
     private String registryAddress;
-    private String serializableType;
+    private String serializableType="com.jalja.rpc.common.seria.HessianSerializable";
     private String serverAddress;
     private String serverPort;
     private String protocolType;

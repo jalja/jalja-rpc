@@ -3,7 +3,6 @@ package com.jalja.example.producer;
 
 import com.jalja.example.service.OrderService;
 import com.jalja.rpc.producer.JService;
-import com.jalja.rpc.register.zk.ZookeeperRegister;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

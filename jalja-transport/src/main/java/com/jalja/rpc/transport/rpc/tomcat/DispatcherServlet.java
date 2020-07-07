@@ -1,8 +1,8 @@
 package com.jalja.rpc.transport.rpc.tomcat;
 
-import com.jalja.rpc.common.RemoteInvocation;
+import com.jalja.rpc.common.rpc.RemoteInvocation;
 import com.jalja.rpc.common.rpc.RpcInterfaceInstance;
-import com.jalja.rpc.common.seria.SeriaSpi;
+import com.jalja.rpc.common.seria.SerializableSPI;
 import com.jalja.rpc.transport.rpc.RpcProperties;
 
 import javax.servlet.http.HttpServlet;
@@ -42,7 +42,7 @@ public class DispatcherServlet extends HttpServlet {
             //反射调用方法
             Object result = method.invoke(interfaceImplClass.newInstance(),invocation.getObjects());
             //把结果返回给调用者
-            byte[] bytes= SeriaSpi.getIJaljaSerializable(Class.forName(rpcProperties.getSerializableType())).serialize(result);
+            byte[] bytes= SerializableSPI.getIJaljaSerializable(Class.forName(rpcProperties.getSerializableType())).serialize(result);
             resp.getOutputStream().write(bytes);
             resp.getOutputStream().close();
         }catch (Exception e){

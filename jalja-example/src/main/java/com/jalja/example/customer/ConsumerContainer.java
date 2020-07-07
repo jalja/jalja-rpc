@@ -18,7 +18,7 @@ import org.springframework.context.annotation.PropertySource;
 @Configurable
 
 @ComponentScan(basePackages={"com.jalja.example.customer"})
-@PropertySource(value = {"classpath:consumer.properties","log4j.properties"})
+@PropertySource(value = {"classpath:consumer.properties"})
 @Import(EnableJaljaRpc.class)
 public class ConsumerContainer {
 }

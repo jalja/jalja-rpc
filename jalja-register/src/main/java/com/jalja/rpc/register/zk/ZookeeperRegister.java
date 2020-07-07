@@ -1,12 +1,12 @@
 package com.jalja.rpc.register.zk;
 
-import com.alibaba.fastjson.JSON;
 
+
+import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.jalja.rpc.common.rpc.RpcServerAddress;
 import com.jalja.rpc.common.utils.ZKCuratorUtils;
 import com.jalja.rpc.register.IRegister;
-import com.jalja.rpc.register.model.QueryRegisterModelDTO;
 import com.jalja.rpc.register.model.RegisterModelDTO;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.curator.framework.CuratorFramework;
@@ -47,7 +47,7 @@ public class ZookeeperRegister implements IRegister {
         List<String> list=getRegisterValue(modelDTO.getClassName());
         if(CollectionUtils.isEmpty(list)){
             list= Lists.newArrayList(modelDTO.getIp());
-            curatorClient.createUpdateNode(modelDTO.getClassName(),JSON.toJSONString(list), CreateMode.PERSISTENT);
+            curatorClient.createUpdateNode(modelDTO.getClassName(), JSON.toJSONString(list), CreateMode.PERSISTENT);
         }else if (!list.contains(modelDTO.getIp())){
             list.add(modelDTO.getIp());
             curatorClient.createUpdateNode(modelDTO.getClassName(),JSON.toJSONString(list), CreateMode.PERSISTENT);

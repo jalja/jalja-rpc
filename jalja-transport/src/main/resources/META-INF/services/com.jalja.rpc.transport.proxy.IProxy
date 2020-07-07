@@ -1,0 +1,2 @@
+com.jalja.rpc.transport.proxy.CglibProxy
+com.jalja.rpc.transport.proxy.JDKProxy

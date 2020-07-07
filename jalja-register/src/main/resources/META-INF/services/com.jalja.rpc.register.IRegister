@@ -1,0 +1,2 @@
+com.jalja.rpc.register.zk.ZookeeperRegister
+com.jalja.rpc.register.file.FileRegister

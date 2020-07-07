@@ -1,0 +1,2 @@
+com.jalja.rpc.common.seria.ProtobufSeria
+com.jalja.rpc.common.seria.JDKSeria

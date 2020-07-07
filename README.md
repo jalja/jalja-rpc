@@ -5,7 +5,7 @@
 **整体设计：**  
     1、与spring结合使用  
     2、使用SPI技术实现，策略调度  
-**具体模块：**
+**具体模块：**  
     1、jalja-transport：  
     *主要是通信相关的部分，目前只是实现的tomcat版本的http ；解下来将实现 netty 版本的http 和 netty 的tcp ；  
     *动态代理，目前实现了JDK的动态代理 和 CGlib版本的动态代理  

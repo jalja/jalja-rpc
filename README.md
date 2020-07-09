@@ -7,7 +7,7 @@
     2、使用SPI技术实现，策略调度  
 **具体模块：**  
     1、jalja-transport：  
-    *主要是通信相关的部分，目前只是实现的tomcat版本的http ；解下来将实现 netty 版本的http 和 netty 的tcp ；  
+    *主要是通信相关的部分，目前实现的tomcat版本的http协议，和netty版本的tcp ；netty 版本的http；  
     *动态代理，目前实现了JDK的动态代理 和 CGlib版本的动态代理  
     2、jalja-register：注册中心，目前实现了 zk 和 本地文件注册  
     3、jalja-common：公共模块，工具包。序列化方式也在其中，目前实现了JDK、protocol 、hessian 三种序列化方式

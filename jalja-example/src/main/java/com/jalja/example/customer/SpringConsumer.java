@@ -14,19 +14,12 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class SpringConsumer {
     public static void main( String[] args ) throws InterruptedException {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(ConsumerContainer.class);
-        for(int i=0;i<1000;i++){
-            final int a=i;
-
-            new Thread(()->{
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                HelloClient client=ctx.getBean(HelloClient.class);
-                client.hello("I"+a);
-                client.create(a);
-            }).start();
+        HelloClient client=ctx.getBean(HelloClient.class);
+        for(int i=0;i<Integer.MAX_VALUE;i++){
+            int finalI = i;
+            Thread.sleep(100);
+            client.hello(finalI +" hello=>"+finalI);
+            client.create(finalI);
         }
     }
 }

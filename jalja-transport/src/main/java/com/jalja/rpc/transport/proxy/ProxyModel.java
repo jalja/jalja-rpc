@@ -1,6 +1,6 @@
 package com.jalja.rpc.transport.proxy;
 
-import com.jalja.rpc.transport.rpc.IRpcServer;
+import com.jalja.rpc.transport.rpc.IRpcTransport;
 
 /**
  * @author XL
@@ -21,7 +21,7 @@ public class ProxyModel {
     /**
      * 提供服务
      */
-    private IRpcServer rpcServer;
+    private IRpcTransport rpcServer;
     /**
      * 动态代理接口
      */
@@ -51,7 +51,7 @@ public class ProxyModel {
 
     }
 
-    public ProxyModel(String balancedType, String serializableType, IRpcServer rpcServer, Class interfaceClass) {
+    public ProxyModel(String balancedType, String serializableType, IRpcTransport rpcServer, Class interfaceClass) {
         this.balancedType = balancedType;
         this.serializableType = serializableType;
         this.rpcServer = rpcServer;
@@ -74,11 +74,11 @@ public class ProxyModel {
         this.serializableType = serializableType;
     }
 
-    public IRpcServer getRpcServer() {
+    public IRpcTransport getRpcServer() {
         return rpcServer;
     }
 
-    public void setRpcServer(IRpcServer rpcServer) {
+    public void setRpcServer(IRpcTransport rpcServer) {
         this.rpcServer = rpcServer;
     }
 

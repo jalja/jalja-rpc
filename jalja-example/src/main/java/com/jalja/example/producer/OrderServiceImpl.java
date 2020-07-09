@@ -21,6 +21,6 @@ public class OrderServiceImpl implements  OrderService {
     private Logger logger= LoggerFactory.getLogger(OrderServiceImpl.class);
     @Override
     public void create(int id) {
-        logger.error(new Date()+"创建订单"+id);
+        logger.info(new Date()+"创建订单"+id);
     }
 }

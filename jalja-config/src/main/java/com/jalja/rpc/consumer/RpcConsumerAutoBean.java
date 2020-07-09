@@ -2,7 +2,7 @@ package com.jalja.rpc.consumer;
 import com.jalja.rpc.config.ConsumerProperties;
 import com.jalja.rpc.transport.proxy.ProxyModel;
 import com.jalja.rpc.transport.proxy.ProxySPI;
-import com.jalja.rpc.transport.rpc.RpcServerSpi;
+import com.jalja.rpc.transport.rpc.RpcTransportSPI;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,7 +58,7 @@ public class RpcConsumerAutoBean implements BeanFactoryAware {
             model.setPort(Integer.valueOf(properties.getServerPort()));
             model.setBalancedType(properties.getRoute());
             model.setSerializableType(properties.getSerializableType());
-            model.setRpcServer(RpcServerSpi.getPRC(Class.forName(properties.getProtocolType())));
+            model.setRpcServer(RpcTransportSPI.getPRC(Class.forName(properties.getProtocolType())));
             model.setInterfaceClass(cName);
             model.setRegistryAddress(properties.getRegistryAddress());
             model.setRegistryType(properties.getRegistryType());

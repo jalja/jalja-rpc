@@ -9,10 +9,10 @@ import java.util.ServiceLoader;
  * @date 2020/6/24 22:41
  * @description: TODO
  */
-public class RpcServerSpi {
-    public static IRpcServer getPRC(Class cz){
-        ServiceLoader<IRpcServer> shouts = ServiceLoader.load(IRpcServer.class);
-        for (IRpcServer s : shouts) {
+public class RpcTransportSPI {
+    public static IRpcTransport getPRC(Class cz){
+        ServiceLoader<IRpcTransport> shouts = ServiceLoader.load(IRpcTransport.class);
+        for (IRpcTransport s : shouts) {
             if(s.getClass().getName().equals(cz.getName())){
                 return s;
             }

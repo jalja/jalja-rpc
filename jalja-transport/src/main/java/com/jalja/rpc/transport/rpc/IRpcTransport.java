@@ -11,7 +11,7 @@ import com.jalja.rpc.common.rpc.RemoteInvocation;
  * @date 2020/6/24 20:38
  * @description: TODO
  */
-public interface IRpcServer {
+public interface IRpcTransport {
     void start(RpcProperties properties) ;
     Object invokeProtocl(RpcProperties rpcProperties, RemoteInvocation invocation);
 }

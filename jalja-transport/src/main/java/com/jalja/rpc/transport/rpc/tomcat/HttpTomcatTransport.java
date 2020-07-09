@@ -4,7 +4,7 @@ import com.jalja.rpc.common.rpc.RemoteInvocation;
 import com.jalja.rpc.common.seria.IJaljaSerializable;
 import com.jalja.rpc.common.seria.SerializableSPI;
 import com.jalja.rpc.common.utils.OkHttpUtils;
-import com.jalja.rpc.transport.rpc.IRpcServer;
+import com.jalja.rpc.transport.rpc.IRpcTransport;
 import com.jalja.rpc.transport.rpc.RpcProperties;
 import org.apache.catalina.*;
 import org.apache.catalina.connector.Connector;
@@ -21,7 +21,7 @@ import org.apache.catalina.startup.Tomcat;
  * @date 2020/6/24 20:39
  * @description: TODO
  */
-public class HttpTomcatServer implements IRpcServer {
+public class HttpTomcatTransport implements IRpcTransport {
     @Override
     public void start(RpcProperties rpcProperties)  {
         String [] address=rpcProperties.getServerAddress().split(":");

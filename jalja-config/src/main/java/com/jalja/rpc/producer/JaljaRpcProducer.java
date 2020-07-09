@@ -2,11 +2,9 @@ package com.jalja.rpc.producer;
 
 import com.jalja.rpc.common.utils.NetUtils;
 import com.jalja.rpc.config.RpcConfigProperties;
-import com.jalja.rpc.event.ServerStartEvent;
-import com.jalja.rpc.spring.RegisterFactoryAware;
-import com.jalja.rpc.transport.rpc.IRpcServer;
+import com.jalja.rpc.transport.rpc.IRpcTransport;
 import com.jalja.rpc.transport.rpc.RpcProperties;
-import com.jalja.rpc.transport.rpc.RpcServerSpi;
+import com.jalja.rpc.transport.rpc.RpcTransportSPI;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +37,7 @@ public class JaljaRpcProducer implements ApplicationListener<ContextRefreshedEve
         if(flag){
             throw new RuntimeException("端口被占用："+properties.getServerPort());
         }
-        IRpcServer protocl = RpcServerSpi.getPRC(Class.forName(properties.getProtocolType()));
+        IRpcTransport protocl = RpcTransportSPI.getPRC(Class.forName(properties.getProtocolType()));
         RpcProperties rpcProperties=new RpcProperties();
         rpcProperties.setProtocolType(properties.getProtocolType());
         rpcProperties.setServerAddress(properties.getServerAddress()+":"+properties.getServerPort());

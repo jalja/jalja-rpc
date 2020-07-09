@@ -17,9 +17,14 @@ public class SpringConsumer {
         HelloClient client=ctx.getBean(HelloClient.class);
         for(int i=0;i<Integer.MAX_VALUE;i++){
             int finalI = i;
-            Thread.sleep(100);
-            client.hello(finalI +" hello=>"+finalI);
-            client.create(finalI);
+            Thread.sleep(1000);
+            for(int j=0;j<5;j++){
+                new Thread(()->{
+                    client.hello(finalI +" hello=>"+finalI);
+                    client.create(finalI);
+                }).start();
+            }
+
         }
     }
 }

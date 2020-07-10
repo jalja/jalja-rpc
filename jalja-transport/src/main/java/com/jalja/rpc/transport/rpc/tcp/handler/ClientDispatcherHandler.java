@@ -33,17 +33,20 @@ import java.lang.reflect.Method;
 public class ClientDispatcherHandler extends SimpleChannelInboundHandler<Pair<String,byte[]>> {
     private Logger logger= LoggerFactory.getLogger(ClientDispatcherHandler.class);
     private RpcProperties properties;
+    private IJaljaSerializable serializable;
     public ClientDispatcherHandler(RpcProperties properties) {
         this.properties = properties;
     }
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Pair<String, byte[]> pair) throws Exception {
-        IJaljaSerializable serializable=SerializableSPI.getIJaljaSerializable(Class.forName(properties.getSerializableType()));
+        if(serializable==null){
+            serializable=SerializableSPI.getIJaljaSerializable(Class.forName(properties.getSerializableType()));
+        }
         byte[] bytes=pair.getValue();
         logger.info("bytes:{}", HexUtils.bytesToHex(bytes));
         PackageData packageData=new PackageData();
         packageData.decode(bytes);
-        logger.error("RequestId:"+packageData.getRequestId());
+        logger.error("Client->RequestId:"+packageData.getRequestId());
         Object result=serializable.deserialize(packageData.getBody(),Object.class);
         NettyResponse response= NettyResponseResult.getResponse(packageData.getRequestId());
         response.setResult(result);

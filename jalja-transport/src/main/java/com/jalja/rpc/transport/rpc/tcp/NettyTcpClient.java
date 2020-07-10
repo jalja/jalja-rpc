@@ -32,7 +32,6 @@ import org.slf4j.LoggerFactory;
 public class NettyTcpClient {
     private Channel channel=null;
     private RpcProperties properties;
-    private EventLoopGroup group=getEventLoopGroup(10);
     private Logger logger= LoggerFactory.getLogger(NettyTcpClient.class);
     public NettyTcpClient(RpcProperties properties) {
         this.properties = properties;
@@ -40,6 +39,7 @@ public class NettyTcpClient {
     }
     public void connect()  {
         Bootstrap bootstrap=new Bootstrap();
+        EventLoopGroup group=getEventLoopGroup(10);
         String [] address=properties.getServerAddress().split(":");
         try {
             bootstrap.group(group).channel( getSocketChannel()).handler(new ClientChannelInitializer(properties));

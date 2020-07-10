@@ -13,6 +13,7 @@ import com.jalja.rpc.transport.rpc.tcp.result.NettyResponse;
 import com.jalja.rpc.transport.rpc.tcp.result.NettyResponseResult;
 import com.jalja.rpc.transport.rpc.tcp.core.PackageData;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufAllocator;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -32,17 +33,20 @@ import java.lang.reflect.Method;
 public class ServerDispatcherHandler extends SimpleChannelInboundHandler<Pair<String,byte[]>> {
     private Logger logger= LoggerFactory.getLogger(ServerDispatcherHandler.class);
     private RpcProperties properties;
+    private IJaljaSerializable serializable;
     public ServerDispatcherHandler(RpcProperties properties) {
         this.properties = properties;
     }
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Pair<String, byte[]> pair) throws Exception {
-        IJaljaSerializable serializable=SerializableSPI.getIJaljaSerializable(Class.forName(properties.getSerializableType()));
+        if(serializable==null){
+            serializable=SerializableSPI.getIJaljaSerializable(Class.forName(properties.getSerializableType()));
+        }
         byte[] bytes=pair.getValue();
         logger.info("bytes:{}", HexUtils.bytesToHex(bytes));
         PackageData packageData=new PackageData();
         packageData.decode(bytes);
-        logger.error("RequestId:"+packageData.getRequestId());
+        logger.error("server->RequestId:"+packageData.getRequestId());
         RemoteInvocation invocation=serializable.deserialize(packageData.getBody(), RemoteInvocation.class);
         String interfaceName = invocation.getInterfaceName();
         Class interfaceImplClass = RpcInterfaceInstance.getClass(interfaceName);
@@ -51,7 +55,10 @@ public class ServerDispatcherHandler extends SimpleChannelInboundHandler<Pair<St
         logger.error("result:"+ JSON.toJSON(result));
         byte[] resultBytes= serializable.serialize(result);
         packageData.setBody(resultBytes);
-        ByteBuf byteBuf= Unpooled.wrappedBuffer(packageData.encode());
+        ByteBufAllocator alloc = ctx.channel().alloc();
+        ByteBuf byteBuf= alloc.directBuffer();
+        logger.info("byteBuf:"+byteBuf.hasArray());
+        byteBuf.writeBytes(packageData.encode());
         ctx.channel().writeAndFlush(byteBuf);
     }
 }

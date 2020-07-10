@@ -36,6 +36,7 @@ public class NettyResponseResult {
                logger.info("getResult:{}",new Date()+Thread.currentThread().getName());
                NettyResponse response=requestMap.get(key);
                Object result= response.getResponse();
+               requestMap.remove(key);
                return result;
            });
            return future.get();

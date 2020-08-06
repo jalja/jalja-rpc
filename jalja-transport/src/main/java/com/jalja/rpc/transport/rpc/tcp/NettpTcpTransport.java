@@ -51,8 +51,6 @@ public class NettpTcpTransport implements IRpcTransport {
         }catch (Exception e){
             e.printStackTrace();
             return null;
-        }finally {
-            NettyResponseResult.remove(requestId);
         }
     }
     private void createClient(RpcProperties rpcProperties){

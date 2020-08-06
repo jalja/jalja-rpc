@@ -1,5 +1,6 @@
 package com.jalja.rpc.transport.rpc.tcp.result;
 
+import com.alibaba.fastjson.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.Date;
@@ -36,13 +37,15 @@ public class NettyResponseResult {
                logger.info("getResult:{}",new Date()+Thread.currentThread().getName());
                NettyResponse response=requestMap.get(key);
                Object result= response.getResponse();
-               requestMap.remove(key);
                return result;
            });
            return future.get();
        }catch (Exception e){
            logger.error("getResult:",e);
            return null;
+       }finally {
+           requestMap.remove(key);
+           logger.error("size:{}",requestMap.size());
        }
     }
 }

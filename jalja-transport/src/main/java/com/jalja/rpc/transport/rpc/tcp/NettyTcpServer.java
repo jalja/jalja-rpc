@@ -4,6 +4,7 @@ import com.jalja.rpc.transport.rpc.RpcProperties;
 import com.jalja.rpc.transport.rpc.tcp.handler.ServerChannelInitializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.epoll.Epoll;
 import io.netty.channel.epoll.EpollEventLoopGroup;
@@ -22,6 +23,8 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  * @description: TODO
  */
 public class NettyTcpServer {
+    public static int socketSndbufSize = Integer.parseInt("65535");
+    public static int socketRcvbufSize =Integer.parseInt("65535");
     private final EventLoopGroup bossGroup = getEventLoopGroup(1);
     private final EventLoopGroup workerGroup = getEventLoopGroup(1);
     private RpcProperties properties;
@@ -33,6 +36,12 @@ public class NettyTcpServer {
         try {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.group(bossGroup, workerGroup).channel(getServerSocketChannel())
+                    .option(ChannelOption.SO_BACKLOG, 1024)
+                    .option(ChannelOption.SO_REUSEADDR, true)
+                    .option(ChannelOption.SO_KEEPALIVE, false)
+                    .childOption(ChannelOption.TCP_NODELAY, true)
+                    .childOption(ChannelOption.SO_SNDBUF, socketSndbufSize)
+                    .childOption(ChannelOption.SO_RCVBUF, socketRcvbufSize)
                     .childHandler(new ServerChannelInitializer(properties));
             ChannelFuture future = serverBootstrap.bind(Integer.valueOf(port)).sync();
             if(future.isSuccess()){

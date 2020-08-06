@@ -50,7 +50,7 @@ public class ClientDispatcherHandler extends SimpleChannelInboundHandler<Pair<St
         Object result=serializable.deserialize(packageData.getBody(),Object.class);
         NettyResponse response= NettyResponseResult.getResponse(packageData.getRequestId());
         response.setResult(result);
-        response.getLatch().countDown();
         NettyResponseResult.set(packageData.getRequestId(),response);
+        response.getLatch().countDown();
     }
 }

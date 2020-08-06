@@ -38,7 +38,6 @@ public class NettyTcpServer {
             serverBootstrap.group(bossGroup, workerGroup).channel(getServerSocketChannel())
                     .option(ChannelOption.SO_BACKLOG, 1024)
                     .option(ChannelOption.SO_REUSEADDR, true)
-                    .option(ChannelOption.SO_KEEPALIVE, false)
                     .childOption(ChannelOption.TCP_NODELAY, true)
                     .childOption(ChannelOption.SO_SNDBUF, socketSndbufSize)
                     .childOption(ChannelOption.SO_RCVBUF, socketRcvbufSize)
